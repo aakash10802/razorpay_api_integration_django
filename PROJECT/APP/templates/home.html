@@ -1,0 +1,56 @@
+
+{%extends 'base.html'%}
+
+{% block content %}
+
+<div class='col-6 mx-auto'>
+    <div class='text-center mt-5'>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzjSUf1_pjWCSy8esWQFoJPAXitrZ85v76OQ&s" alt="">
+    </div>
+    <form method='POST'>
+       {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Enter your name</label>
+          <input type="text" name='name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
+         
+        </div>
+        
+        <div>
+          <label for="exampleInputEmail1">Enter pet category</label>
+          <input type="text" name='breed' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
+    
+        </div>
+        <div class="form-group">
+          <label for="exampleamount1">Enter amount</label>
+          <input type='number' name='amount' class="form-control" id="exampleamount1" placeholder="amount">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
+      </form>
+</div>
+
+{% if payment %}
+<div class='text-center mx-auto'>
+<form action="/success" method='POST'>
+  {% csrf_token %}
+  <script 
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key = "rzp_test_Cr9gHQCbATBCWX"
+    data-amount = "{{payment.amount}}" 
+    data-breed = "{{payment.breed}}"
+    data-currency = "INR"
+    data-buttontext = "Pay"
+    data-name = "Business Pet" 
+    data-description = "Test Transaction"
+    data-image = "https://example.com/your_logo.jpg"
+    data-order_id="{{payment.id}}" 
+    data-prefill.name = "Gaurav Kumar"
+    data-prefill.email = "gaurav.kumar@example.com"
+    data-prefill.contact = "9000090000"
+    data-theme.color = "#F37254"
+  ></script> 
+  <input type="hidden" custom ="Hidden Element" name="hidden">
+</form>
+
+{% endif %}
+</div>
+{% endblock %}
