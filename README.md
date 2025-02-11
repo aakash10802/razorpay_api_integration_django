@@ -1,6 +1,3 @@
-Here's a well-structured GitHub README for integrating Razorpay API in a Django project:  
-
----
 
 ## 🚀 Razorpay API Integration in Django
 
@@ -97,4 +94,4 @@ This project is licensed under the MIT License.
 
 ---
 
-Would you like me to add more details, such as example request/response data or frontend integration steps? 🚀
+
